@@ -1,0 +1,10 @@
+<p>Maksimum: {{ max }}</p>
+
+<button (click)="generate()">Losuj</button>
+
+@if (number !== null) {
+  <p>Wylosowana liczba: {{ number }}</p>
+}
+
+
+<p [style.color]="color">{{ message }}</p>
