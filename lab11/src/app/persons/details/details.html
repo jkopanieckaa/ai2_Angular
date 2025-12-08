@@ -1,0 +1,19 @@
+<h2>Szczegóły osoby</h2>
+
+<div *ngIf="person as p; else notFound">
+  <p><strong>Imię:</strong> {{ p.firstName }}</p>
+  <p><strong>Nazwisko:</strong> {{ p.familyName }}</p>
+  <p><strong>Wiek:</strong> {{ p.age }}</p>
+
+  <p><strong>Miasto:</strong> {{ p.address.city }}</p>
+  <p><strong>Ulica:</strong> {{ p.address.street }}</p>
+  <p><strong>Kod pocztowy:</strong> {{ p.address.postCode }}</p>
+</div>
+
+<ng-template #notFound>
+  <p>Nie znaleziono osoby.</p>
+</ng-template>
+
+
+<br>
+
