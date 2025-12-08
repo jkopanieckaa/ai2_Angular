@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Random } from './random/random';
+import { List } from './list/list';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [Random, List],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {}
+
+
+export class AppComponent {
+  message: string = 'Moja my_app ;)';
+}
+
