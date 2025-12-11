@@ -7,20 +7,16 @@ export interface Address {
   street?: string;
   postCode?: string;
 }
-
 export interface Person {
   id?: number;
   firstName?: string;
   familyName?: string;
   age?: number;
-  address?: Address;   // <-- NAJWAŻNIEJSZE
+  address?: Address;
 }
 
-
-
 @Injectable({
-  providedIn: 'root'
-})
+  providedIn: 'root'})
 export class PersonService {
 
   private api = 'http://localhost:8080/api/persons';
@@ -30,20 +26,13 @@ export class PersonService {
   getAll(): Observable<Person[]> {
     return this.http.get<Person[]>(this.api);
   }
-
-  getOne(id: number): Observable<Person> {
-    return this.http.get<Person>(`${this.api}/${id}`);
+  getById(id: number) {
+    return this.http.get<Person>(`http://localhost:8080/api/persons/${id}`);
   }
-
   add(person: Person): Observable<Person> {
     return this.http.post<Person>(this.api, person);
   }
-
-  update(id: number, person: Person): Observable<Person> {
-    return this.http.put<Person>(`${this.api}/${id}`, person);
-  }
-
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/${id}`);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${id}`);
   }
 }

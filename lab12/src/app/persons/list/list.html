@@ -7,8 +7,9 @@
     <li>
       <strong>{{ person.firstName }} {{ person.familyName }}</strong>
       — {{ person.age }} lat
-      <a [routerLink]="['/details', $index]">Szczegóły</a>
-      <button (click)="delete($index)">Usuń</button>
+      <a [routerLink]="['/details', person.id]">Szczegóły</a>
+      <button (click)="delete(person.id!)">Usuń</button>
+
     </li>
   }
 </ul>

@@ -1,26 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { PersonService, Person } from '../person';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { PersonService, Person } from '../person.service';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterModule],
   templateUrl: './list.html',
   styleUrl: './list.css'
 })
-export class List implements OnInit {
+export class List {
 
   persons: Person[] = [];
 
   constructor(private service: PersonService) {}
 
-  ngOnInit(): void {
-    this.persons = this.service.getAll();
+  ngOnInit() {
+    this.load();
   }
 
-  delete(index: number): void {
-    this.service.delete(index);
-    this.persons = this.service.getAll();
+  load() {
+    this.service.getAll().subscribe(data => {
+      this.persons = data;
+    });
   }
+
+
+  delete(id: number) {
+    this.service.delete(id).subscribe(() => {
+      this.load();
+    });
+  }
+
+
 }
